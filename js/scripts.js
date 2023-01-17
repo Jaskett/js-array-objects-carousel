@@ -32,23 +32,31 @@ console.log(images);
 for(let i = 0; i < images.length; i++) {
     let currentImage = images[i];
 
-    const currentImageElement = 
+    const currentCard = 
     `
-        <h2>${currentImage.title}</h2>
-        <p>${currentImage.text}</p>
         <img src="${currentImage.image}">
+        <h3>${currentImage.title}</h3>
+        <p>${currentImage.text}</p>
     `
-    gallery.innerHTML += currentImageElement;
+    gallery.innerHTML += currentCard;
 }
 
 const data = document.querySelectorAll('#gallery img');
+const title = document.querySelectorAll('#gallery h3');
+const paragraph = document.querySelectorAll('#gallery p');
+
 let currentActiveIndex = 0;
+
 data[currentActiveIndex].classList.add('active');
+title[currentActiveIndex].classList.add('active');
+paragraph[currentActiveIndex].classList.add('active');
 
 next.addEventListener('click',
     function() {
         // Rimuovo la classe active
         data[currentActiveIndex].classList.remove('active');
+        title[currentActiveIndex].classList.remove('active');
+        paragraph[currentActiveIndex].classList.remove('active');
 
         //Incremento per cambiare immagine
         currentActiveIndex++;
@@ -59,5 +67,28 @@ next.addEventListener('click',
         
         // Assegno la classe active alla foto successiva
         data[currentActiveIndex].classList.add('active');
+        title[currentActiveIndex].classList.add('active');
+        paragraph[currentActiveIndex].classList.add('active');
+    }
+);
+
+prev.addEventListener('click',
+    function() {
+        // Rimuovo la classe active
+        data[currentActiveIndex].classList.remove('active');
+        title[currentActiveIndex].classList.remove('active');
+        paragraph[currentActiveIndex].classList.remove('active');
+
+        //Incremento per cambiare immagine
+        currentActiveIndex--;
+
+        if (currentActiveIndex < 0) {
+            currentActiveIndex = 4;
+        }
+        
+        // Assegno la classe active alla foto successiva
+        data[currentActiveIndex].classList.add('active');
+        title[currentActiveIndex].classList.add('active');
+        paragraph[currentActiveIndex].classList.add('active');
     }
 );

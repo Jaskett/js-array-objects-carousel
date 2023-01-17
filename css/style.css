@@ -33,6 +33,32 @@ body {
     display: none;
 }
 
+h3 {
+    position: absolute;
+    color: white;
+    display: block;
+    right: 50px;
+    bottom: 50px;
+    display: none;
+}
+
+p {
+    position: absolute;
+    color: white;
+    display: block;
+    right: 50px;
+    bottom: 15px;
+    display: none;
+}
+
+#gallery h3.active {
+    display: block;
+}
+
+#gallery p.active {
+    display: block;
+}
+
 #gallery img.active {
     display: block;
 }
