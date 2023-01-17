@@ -103,11 +103,13 @@ p {
     object-fit: cover;
     object-position: center;
     border-radius: 10px;
-    transition: transform 0.25s;
+    filter: grayscale(1);
+    transition: transform 0.25s, filter 0.25s;
 }
 
 #thumbnails img:hover {
     cursor: pointer;
-    box-shadow: 0 0 15px black;
+    box-shadow: 0 0 30px dodgerblue;
     transform: translateY(-30px);
+    filter: grayscale(0);
 }

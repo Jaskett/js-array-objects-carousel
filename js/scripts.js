@@ -52,51 +52,69 @@ for(let i = 0; i < images.length; i++) {
 const data = document.querySelectorAll('#gallery img');
 const title = document.querySelectorAll('#gallery h3');
 const paragraph = document.querySelectorAll('#gallery p');
+const thumbs = document.querySelectorAll('#thumbnails img');
 
 let currentActiveIndex = 0;
 
 data[currentActiveIndex].classList.add('active');
 title[currentActiveIndex].classList.add('active');
 paragraph[currentActiveIndex].classList.add('active');
+thumbs[currentActiveIndex].classList.add('active');
 
-next.addEventListener('click',
-    function() {
-        // Rimuovo la classe active
-        data[currentActiveIndex].classList.remove('active');
-        title[currentActiveIndex].classList.remove('active');
-        paragraph[currentActiveIndex].classList.remove('active');
+function changeCard(target) {
+    // Rimuovo la classe active
+    data[currentActiveIndex].classList.remove('active');
+    title[currentActiveIndex].classList.remove('active');
+    paragraph[currentActiveIndex].classList.remove('active');
+    thumbs[currentActiveIndex].classList.remove('active');
 
+    if(target === 'next') {
         //Incremento per cambiare immagine
         currentActiveIndex++;
 
+        // Loop
         if (currentActiveIndex === data.length) {
             currentActiveIndex = 0;
         }
-        
-        // Assegno la classe active alla foto successiva
-        data[currentActiveIndex].classList.add('active');
-        title[currentActiveIndex].classList.add('active');
-        paragraph[currentActiveIndex].classList.add('active');
+    }
+    else if(target === 'prev') {
+        //Decremento per cambiare immagine
+        currentActiveIndex--;
+
+        // Validation
+        if (currentActiveIndex < 0) {
+            currentActiveIndex = 4;
+        }
+    } else {
+        currentActiveIndex = target;
+    }
+
+    // Assegno la classe active col nuovo indice
+    data[currentActiveIndex].classList.add('active');
+    title[currentActiveIndex].classList.add('active');
+    paragraph[currentActiveIndex].classList.add('active');
+    thumbs[currentActiveIndex].classList.add('active');
+}
+
+next.addEventListener('click',
+    function() {
+        changeCard('next');
     }
 );
 
 prev.addEventListener('click',
     function() {
-        // Rimuovo la classe active
-        data[currentActiveIndex].classList.remove('active');
-        title[currentActiveIndex].classList.remove('active');
-        paragraph[currentActiveIndex].classList.remove('active');
-
-        //Decremento per cambiare immagine
-        currentActiveIndex--;
-
-        if (currentActiveIndex < 0) {
-            currentActiveIndex = 4;
-        }
-        
-        // Assegno la classe active alla foto precedente
-        data[currentActiveIndex].classList.add('active');
-        title[currentActiveIndex].classList.add('active');
-        paragraph[currentActiveIndex].classList.add('active');
+        changeCard('prev');
     }
 );
+
+// Logica per le thumbs
+for(let i = 0; i < thumbs.length; i++) {
+    const thumb = thumbs[i];
+
+    thumb.addEventListener('click',
+        function() {
+            changeCard(i);
+        }
+    );
+}
