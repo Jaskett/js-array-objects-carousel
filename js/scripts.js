@@ -1,5 +1,6 @@
 const carousel = document.getElementById('carousel');
 const gallery = document.getElementById('gallery');
+const thumbails = document.getElementById('thumbnails');
 const prev = document.getElementById('prev');
 const next = document.getElementById('next');
 
@@ -38,7 +39,14 @@ for(let i = 0; i < images.length; i++) {
         <h3>${currentImage.title}</h3>
         <p>${currentImage.text}</p>
     `
+
+    const thumb =
+    `
+        <img src="${currentImage.image}">
+    `
+
     gallery.innerHTML += currentCard;
+    thumbails.innerHTML += thumb;
 }
 
 const data = document.querySelectorAll('#gallery img');
@@ -79,14 +87,14 @@ prev.addEventListener('click',
         title[currentActiveIndex].classList.remove('active');
         paragraph[currentActiveIndex].classList.remove('active');
 
-        //Incremento per cambiare immagine
+        //Decremento per cambiare immagine
         currentActiveIndex--;
 
         if (currentActiveIndex < 0) {
             currentActiveIndex = 4;
         }
         
-        // Assegno la classe active alla foto successiva
+        // Assegno la classe active alla foto precedente
         data[currentActiveIndex].classList.add('active');
         title[currentActiveIndex].classList.add('active');
         paragraph[currentActiveIndex].classList.add('active');
