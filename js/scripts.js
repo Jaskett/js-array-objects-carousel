@@ -3,11 +3,6 @@ const gallery = document.getElementById('gallery');
 const prev = document.getElementById('prev');
 const next = document.getElementById('next');
 
-const data = document.querySelectorAll('#gallery img');
-
-let currentActiveIndex = 0;
-data[currentActiveIndex].classList.add('active');
-
 const images = [
     {
         image: 'img/1.webp',
@@ -34,33 +29,32 @@ const images = [
 
 console.log(images);
 
+for(let i = 0; i < images.length; i++) {
+    let currentImage = images[i];
+
+    const currentImageElement = 
+    `
+        <h2>${currentImage.title}</h2>
+        <p>${currentImage.text}</p>
+        <img src="${currentImage.image}">
+    `
+    gallery.innerHTML += currentImageElement;
+}
+
+const data = document.querySelectorAll('#gallery img');
+let currentActiveIndex = 0;
+data[currentActiveIndex].classList.add('active');
+
 next.addEventListener('click',
     function() {
         // Rimuovo la classe active
         data[currentActiveIndex].classList.remove('active');
 
-        // Incrementiamo per cambiare immagine
+        //Incremento per cambiare immagine
         currentActiveIndex++;
 
-        if(currentActiveIndex == images.length) {
+        if (currentActiveIndex === data.length) {
             currentActiveIndex = 0;
-        }
-
-        // Assegno la classe active alla foto successiva
-        data[currentActiveIndex].classList.add('active');
-    }
-);
-
-prev.addEventListener('click',
-    function() {
-        // Rimuovo la classe active
-        data[currentActiveIndex].classList.remove('active');
-
-        // Decrementiamo per cambiare immagine
-        currentActiveIndex--;
-        
-        if(currentActiveIndex < 0) {
-            currentActiveIndex = 4;
         }
         
         // Assegno la classe active alla foto successiva
