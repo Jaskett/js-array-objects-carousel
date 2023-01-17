@@ -50,3 +50,20 @@ next.addEventListener('click',
         data[currentActiveIndex].classList.add('active');
     }
 );
+
+prev.addEventListener('click',
+    function() {
+        // Rimuovo la classe active
+        data[currentActiveIndex].classList.remove('active');
+
+        // Decrementiamo per cambiare immagine
+        currentActiveIndex--;
+        
+        if(currentActiveIndex < 0) {
+            currentActiveIndex = 4;
+        }
+        
+        // Assegno la classe active alla foto successiva
+        data[currentActiveIndex].classList.add('active');
+    }
+);
